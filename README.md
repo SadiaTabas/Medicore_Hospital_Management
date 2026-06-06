@@ -1,165 +1,146 @@
-Here is a clean, professional **GitHub README.md** for your **MediCore Hospital Management System**:
+ 
+
+#  MediCore Hospital Management System (Full Stack)
+
+A scalable and modern **full-stack Hospital Management System** built using:
+
+* **Backend:** NestJS, TypeScript, PostgreSQL
+* **Frontend:** Next.js, React, Tailwind CSS
+* **Authentication:** JWT-based secure login system
+
+This system streamlines **doctor management, appointment scheduling, and profile handling** with a responsive and user-friendly interface.
+
+ 
+
+#  System Overview
+
+MediCore is designed to connect doctors and patients efficiently by providing:
+
+* Secure authentication system
+* Doctor profile management
+* Appointment scheduling system
+* Responsive web-based dashboard
+
+ 
+
+#  Tech Stack
+
+## Backend
+
+* NestJS
+* Node.js
+* TypeScript
+* PostgreSQL
+* JWT Authentication
+* BCrypt Password Hashing
+* TypeORM / Prisma (optional)
+
+## Frontend
+
+* Next.js
+* React.js
+* TypeScript
+* Tailwind CSS
+* Axios (API communication)
 
 ---
 
-````md
-# 🏥 MediCore Hospital Management System
+#  Authentication System
 
-A web-based Hospital Management System designed to streamline doctor management, patient appointment scheduling, and healthcare service administration. The system enables patients to book appointments with doctors while providing doctors with profile management and appointment tracking features.
-
----
-
-## 🚀 Features
-
-### 👨‍⚕️ Doctor Module
-
-#### 🔐 Authentication
-- Secure doctor registration
-- Login and logout functionality
-- Password encryption for security
-
-#### 🧾 Profile Management
-- Create professional doctor profiles
-- Update personal information
-- Upload supporting documents
-- Manage hospital affiliation details
-
-#### 📅 Appointment Management
-- View patient appointments
-- Track appointment schedules
-- Manage consultation records
-
-#### 🔎 Doctor Search
-- Browse available doctors
-- View specializations
-- Check doctor experience
+* Doctor registration
+* Secure login/logout
+* JWT-based session control
+* Password encryption using BCrypt
 
 ---
 
-## 🗄️ Database Structure
+#  Doctor Management
 
-### 📊 Tables
-
-#### Doctor
-- ID (Primary Key)
-- Name
-- Specialization
-- Experience
-- Password (Encrypted)
-- Phone Number
-- File Upload
-- ProfileId (Foreign Key)
-
-#### Doctor_Profile
-- ID (Primary Key)
-- Address
-- Hospital
-
-#### Appointment
-- ID (Primary Key)
-- PatientName
-- AppointmentDate
-- DoctorId (Foreign Key)
+* Create doctor accounts
+* Update doctor profiles
+* Manage specialization & experience
+* Upload supporting documents
 
 ---
 
-## 🔗 Database Relationships
+#  Appointment Management
 
-- **Doctor ↔ Doctor_Profile** (One-to-One)
-  - Each doctor has one profile
-  - Profile stores hospital and address information
-
-- **Doctor ↔ Appointment** (One-to-Many)
-  - One doctor can have multiple appointments
-  - Each appointment belongs to one doctor
+* Create appointments
+* Assign doctors to patients
+* View appointment history
+* Track consultation schedules
 
 ---
 
-## 🛠️ Tech Stack
+#  Profile System
 
-### Frontend
-- React.js
-- Next.js
-- Tailwind CSS
+* One-to-one doctor profile mapping
+* Store hospital & address details
+* Update profile information
+
+---
+
+#  Database Structure
+
+## Doctor Table
+
+* ID (Primary Key)
+* Name
+* Specialization
+* Experience
+* Password (Encrypted)
+* Phone (Unique)
+* File
+* ProfileId (Foreign Key)
+
+## Doctor_Profile Table
+
+* ID (Primary Key)
+* Address
+* Hospital
+
+## Appointment Table
+
+* ID (Primary Key)
+* Patient Name
+* Date
+* DoctorId (Foreign Key)
+
+---
+
+#  Database Relationships
+
+* Doctor ↔ Profile → One-to-One
+* Doctor ↔ Appointment → One-to-Many
+
+---
+
+#  Installation Guide
+
+## 1️ Clone Repositories
 
 ### Backend
-- NestJS
-- TypeScript
-
-### Database
-- PostgreSQL
-
-### Authentication
-- bcrypt password hashing
-
-### Development Tools
-- Visual Studio Code
-- pgAdmin
-
----
-
-## ⚙️ Core Functionalities
-
-### 👨‍⚕️ Doctor Registration
-- Create doctor accounts
-- Secure password storage
-- Upload qualification documents
-
-### 📅 Appointment Scheduling
-- Patient appointment booking
-- Doctor assignment system
-- Appointment tracking
-
-### 🧾 Profile Management
-- Hospital information handling
-- Doctor profile updates
-- Address management
-
-### 🔐 Security
-- Encrypted passwords
-- Unique phone number validation
-- Database constraints enforcement
-
----
-
-## 📦 Installation Guide
-
-### 1️⃣ Clone Repository
-```bash
-git clone https://github.com/your-username/Medicore_Hospital_Management.git
-cd Medicore_Hospital_Management
-````
-
----
-
-### 2️⃣ Database Setup
-
-Create PostgreSQL database:
-
-```sql
-CREATE DATABASE MedicoreDB;
-```
-
-Import database:
-
-Using `psql`:
 
 ```bash
-psql -U postgres -d MedicoreDB -f database.sql
+git clone https://github.com/your-username/medicore-backend.git
 ```
 
-Or using **pgAdmin**:
+### Frontend
 
-* Open pgAdmin
-* Create new database
-* Right-click → Restore
-* Import provided `.sql` file
+```bash
+git clone https://github.com/your-username/medicore-frontend.git
+```
 
 ---
 
-### 3️⃣ Configure Environment Variables
+## 2️ Backend Setup
 
-Create a `.env` file:
+```bash
+cd medicore-backend
+npm install
+```
+
+### Create `.env` file
 
 ```env
 DB_HOST=localhost
@@ -168,27 +149,50 @@ DB_USERNAME=postgres
 DB_PASSWORD=your_password
 DB_NAME=MedicoreDB
 
-PORT=3000
 JWT_SECRET=your_secret_key
+PORT=5000
 ```
 
----
+### Create Database
 
-### 4️⃣ Run the Project
-
-Install dependencies:
-
-```bash
-npm install
+```sql
+CREATE DATABASE MedicoreDB;
 ```
 
-Start development server:
+### Run Server
 
 ```bash
 npm run start:dev
 ```
 
-Application runs at:
+Backend runs at:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 3️ Frontend Setup
+
+```bash
+cd medicore-frontend
+npm install
+```
+
+### Create `.env.local`
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
+
+### Run Frontend
+
+```bash
+npm run dev
+```
+
+Frontend runs at:
 
 ```
 http://localhost:3000
@@ -196,37 +200,59 @@ http://localhost:3000
 
 ---
 
-## 🔮 Future Enhancements
+#  API Endpoints
 
-* Online consultation system
-* Prescription management
-* Medical record storage
+## Authentication
+
+* `POST /auth/register` → Doctor registration
+* `POST /auth/login` → Login
+
+## Doctor
+
+* `GET /doctor/profile` → Get profile
+* `PUT /doctor/profile` → Update profile
+
+## Appointment
+
+* `POST /appointment` → Create appointment
+* `GET /appointment` → Get appointments
+
+---
+
+#  UI/UX Features
+
+* Fully responsive design (mobile + desktop)
+* Clean medical dashboard UI
+* Fast navigation with Next.js routing
+* Tailwind CSS styling
+
+---
+
+#  Future Enhancements
+
+* Patient module integration
+* Video consultation system
+* AI-based diagnosis suggestions
+* Email/SMS notifications
 * Payment gateway integration
-* Doctor availability scheduling
-* Email notifications
-* SMS appointment reminders
-* Admin dashboard analytics
+* Live chat between doctor & patient
 
 ---
 
-## 🎯 Project Objective
+ 
 
-The MediCore Hospital Management System aims to simplify healthcare operations by providing a secure and efficient platform for doctors and patients. It enhances appointment scheduling, doctor profile management, and overall healthcare coordination.
+# 📚 Resources
 
----
-
-## 📄 License
-
-This project is developed for **educational and academic purposes only**.
-
-```
+* NestJS Docs: [https://docs.nestjs.com](https://docs.nestjs.com)
+* Next.js Docs: [https://nextjs.org/docs](https://nextjs.org/docs)
+* PostgreSQL Docs: [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
 
 ---
 
-If you want, I can also:
-- :contentReference[oaicite:0]{index=0}
-- :contentReference[oaicite:1]{index=1}
-- or :contentReference[oaicite:2]{index=2}
+# 📄 License
+
+This project is developed for **academic and educational purposes only**.
+
+ 
 
 Just tell me 👍
-```
